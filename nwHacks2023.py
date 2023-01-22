@@ -7,6 +7,21 @@ url = 'https://api.myanimelist.net/v2/anime?q='
 limit = '&limit=5'
 animeNames = []
 
+layout = [[sg.Text('Enter anime name: '), sg.Input(key='-IN-')], 
+[sg.Text('Output', size=(50,10), key='-OUT-')], [sg.Button('OK'), sg.Button('EXIT')]]
+
+window = sg.Window('Title', layout)
+
+
+while True:
+    
+    event, values = window.read()
+    if event == 'Exit' or event == sg.WIN_CLOSED:
+        break
+    
+    window['-OUT-'].update(values['-IN-'])
+
+window.close()
 
 def jprint(obj):
     # create a formatted string of the Python JSON object
@@ -43,3 +58,7 @@ while recommendedAnimeOneNumber > 5 or recommendedAnimeOneNumber < 1:
 #                             "5) " +  + "\n")
 
 # jprint(response.json());
+
+
+def animeListClear():
+    animeNames = []
